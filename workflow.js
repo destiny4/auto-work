@@ -4,6 +4,7 @@ import Listr from 'listr'
 export default args => {
   let tasks
   const {init,msg}=args
+  console.log(args)
   if (!init) {
     tasks = new Listr([
       {
