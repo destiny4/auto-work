@@ -15,8 +15,8 @@ program
   .parse(process.argv)
 
 const args = {
-  init: program.init||false,
-  msg: program.msg
+  init: false,
+  ...program.opts()
 }
 
 task(args)
