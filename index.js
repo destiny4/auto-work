@@ -1,25 +1,22 @@
-import fs from 'fs-extra'
-import path from 'path'
+#!/usr/bin/env node
 
-function fileDisplay(filePath) {
-  const files = fs.readdirSync(filePath)
-  files.forEach(function(item) {
-    const fPath=path.join(filePath,item)
-    const stat = fs.statSync(fPath)
-    if (stat.isDirectory() === true) {
-      if(item==='node_modules'){
-        fs.remove(fPath).then(res=>{
-          console.log('已删除----',fPath)
-        })
-      }else{
-        fileDisplay(fPath)
-      }
-    }
-  })
+import { Command } from 'commander/esm.mjs';
+import task from './workflow.js'
+import fs from 'fs-extra'
+
+const pkg = JSON.parse(fs.readFileSync('./package.json'))
+
+const program = new Command()
+
+program
+  .version(pkg.version)
+  .option('-m, --msg [value]', 'please input commit message')
+  .option('-i, --init', '是否初始化')
+  .parse(process.argv)
+
+const args = {
+  init: program.init||false,
+  msg: program.msg
 }
-try{
-  fileDisplay(path.resolve('..','project'))
-}
-catch(ex){
-  console.log('文件操作错误',ex)
-}
+
+task(args)

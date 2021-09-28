@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "importHelpers": true,
+    "module": "CommonJS",
+    "outDir": "./lib",
+    "strict": true,
+    "pretty": true,
+    "target": "ESNext",
+    "noImplicitThis": false,
+    "baseUrl": "./",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["bin/*", ".eslintrc.js", "src/plugins/*"]
+}
